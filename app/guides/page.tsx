@@ -9,35 +9,37 @@ export const metadata = {
 
 export default function GuidesPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <Link href="/" className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-6">
-        <ArrowLeft className="w-4 h-4" /> 홈으로
+    <div className="max-w-5xl mx-auto px-5 py-10">
+      <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-600 mb-8 transition-colors">
+        <ArrowLeft className="w-3.5 h-3.5" /> 홈으로
       </Link>
 
-      <h1 className="text-xl font-bold text-gray-900 mb-1">서민금융 가이드</h1>
-      <p className="text-sm text-gray-500 mb-8">서민금융 상품 활용법과 금융 정보를 알기 쉽게 정리했습니다.</p>
+      <div className="mb-10">
+        <h1 className="text-xl font-bold text-gray-900">서민금융 가이드</h1>
+        <p className="text-sm text-gray-500 mt-1">서민금융 상품 활용법과 금융 정보를 알기 쉽게 정리했습니다</p>
+      </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         {GUIDES.map((guide) => {
           const cat = CATEGORIES.find((c) => c.slug === guide.category)
           return (
             <Link
               key={guide.id}
               href={`/guides/${guide.id}`}
-              className="flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all"
+              className="group bg-white rounded-2xl p-5 md:p-6 shadow-sm shadow-gray-200/50 border border-gray-100 card-hover flex gap-4 items-start"
             >
-              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0">
-                <BookOpen className="w-5 h-5 text-gray-500" />
+              <div className={`w-10 h-10 ${cat?.bgColor || "bg-gray-50"} rounded-xl flex items-center justify-center shrink-0`}>
+                <BookOpen className={`w-5 h-5 ${cat?.color || "text-gray-500"}`} />
               </div>
-              <div className="min-w-0">
-                <span className={`inline-block text-xs px-2 py-0.5 rounded-full mb-1.5 ${cat?.bgColor} ${cat?.color}`}>
+              <div className="min-w-0 flex-1">
+                <span className={`inline-block text-[11px] font-medium px-2 py-0.5 rounded-md ${cat?.bgColor} ${cat?.color} mb-1.5`}>
                   {cat?.name}
                 </span>
-                <h2 className="font-semibold text-gray-900">{guide.title}</h2>
-                <p className="text-sm text-gray-500 mt-1">{guide.summary}</p>
-                <div className="flex flex-wrap gap-1.5 mt-2">
+                <h2 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{guide.title}</h2>
+                <p className="text-sm text-gray-500 mt-1.5 leading-relaxed">{guide.summary}</p>
+                <div className="flex gap-1.5 mt-3">
                   {guide.tags.map((tag) => (
-                    <span key={tag} className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded">
+                    <span key={tag} className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
                       {tag}
                     </span>
                   ))}

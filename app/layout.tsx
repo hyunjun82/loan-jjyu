@@ -22,9 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased bg-[#f8fafc]">
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen bg-[#f8fafc]">{children}</main>
         <Footer />
       </body>
     </html>
