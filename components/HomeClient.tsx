@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Search } from "lucide-react"
-import { type FinanceProduct, type ApiResponse, categorizeProduct, CATEGORIES } from "@/lib/api"
+import { type FinanceProduct, type ApiResponse, categorizeProduct, CATEGORIES, getApiUrl } from "@/lib/api"
 import CategoryCard from "./CategoryCard"
 import ProductCard from "./ProductCard"
 import SearchBar from "./SearchBar"
@@ -16,7 +16,7 @@ export default function HomeClient() {
   useEffect(() => {
     async function loadProducts() {
       try {
-        const res = await fetch("/api/finance?page=1&perPage=100")
+        const res = await fetch(getApiUrl(1, 100))
         if (!res.ok) throw new Error("API 호출 실패")
         const data: ApiResponse = await res.json()
         setProducts(data.data || [])

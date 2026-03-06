@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { type FinanceProduct, type ApiResponse } from "@/lib/api"
+import { type FinanceProduct, type ApiResponse, getApiUrl } from "@/lib/api"
 import ProductList from "@/components/ProductList"
 
 export default function CategoryPageClient({ category }: { category: string }) {
@@ -12,7 +12,7 @@ export default function CategoryPageClient({ category }: { category: string }) {
   useEffect(() => {
     async function loadProducts() {
       try {
-        const res = await fetch("/api/finance?page=1&perPage=100")
+        const res = await fetch(getApiUrl(1, 100))
         if (!res.ok) throw new Error("API 호출 실패")
         const data: ApiResponse = await res.json()
         setProducts(data.data || [])

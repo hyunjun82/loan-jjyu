@@ -30,12 +30,16 @@ export interface ApiResponse {
   totalCount: number
 }
 
+export function getApiUrl(page: number = 1, perPage: number = 100): string {
+  return `${API_BASE}?page=${page}&perPage=${perPage}&serviceKey=${SERVICE_KEY}`
+}
+
 export async function fetchFinanceProducts(
   page: number = 1,
   perPage: number = 100
 ): Promise<ApiResponse> {
-  const url = `${API_BASE}?page=${page}&perPage=${perPage}&serviceKey=${SERVICE_KEY}`
-  const res = await fetch(url, { next: { revalidate: 3600 } })
+  const url = getApiUrl(page, perPage)
+  const res = await fetch(url)
   if (!res.ok) {
     throw new Error(`API 호출 실패: ${res.status}`)
   }
