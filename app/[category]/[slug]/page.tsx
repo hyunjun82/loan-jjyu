@@ -8,6 +8,7 @@ import { ShareButtons } from "@/components/ShareButtons";
 import { AuthorBio } from "@/components/AuthorBio";
 import { ProductInfoCard } from "@/components/ProductInfoCard";
 import { LoanConditionTable } from "@/components/LoanConditionTable";
+import { ArticleViz } from "@/components/ArticleViz";
 import { getSpokeArticle } from "@/data/articles";
 import { spokeArticles } from "@/data/articles";
 import { categories } from "@/data/categories";
@@ -155,6 +156,9 @@ export default async function SpokePage({ params }: PageProps) {
             </div>
           )}
 
+          {/* Viz: top */}
+          <ArticleViz slug={spokeSlug} position="top" />
+
           {/* Article Sections */}
           <article>
             {article.sections.map((section, i) => {
@@ -181,6 +185,7 @@ export default async function SpokePage({ params }: PageProps) {
                       <hr className="mt-2 border-gray-200" />
                     </>
                   )}
+                  <ArticleViz slug={spokeSlug} position={`after-${i}` as `after-${number}`} />
                 </Fragment>
               );
             })}
