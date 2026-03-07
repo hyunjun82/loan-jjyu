@@ -48,22 +48,28 @@ function split대상(raw) {
 
 const PATTERNS = [
   // 1. 기본 (hub spoke)
-  (p) => ({
-    slug: `${p.name}`,
-    title: `${p.name} 신청자격 금리 한도 | ${targetLabel(p)} 완벽 가이드`,
-    type: "기본",
-    usedFields: ["name"],
-  }),
+  (p) => {
+    const rate = p["금리(%)"] ? fmt금리(p["금리(%)"]) : "";
+    const limit = p["한도(만원)"] ? fmt한도(p["한도(만원)"]) : "";
+    return {
+      slug: `${p.name}`,
+      title: `${p.name} 신청자격 금리 한도 | ${rate} ${limit} ${targetLabel(p)} 조건`,
+      type: "기본",
+      usedFields: ["name", "금리(%)", "한도(만원)"],
+    };
+  },
 
   // 2. 금리
   (p) => {
     if (!p["금리(%)"]) return null;
     const rate = fmt금리(p["금리(%)"]);
+    const limit = p["한도(만원)"] ? fmt한도(p["한도(만원)"]) : "";
+    const period = p["기간(년)"] ? `${p["기간(년)"]}년` : "";
     return {
       slug: `${p.name}-금리`,
-      title: `${p.name} 금리 ${rate} 받는 조건 | 실제 적용 금리 차이`,
+      title: `${p.name} 금리 ${rate} 조건 | ${limit} ${period} 이자 계산`,
       type: "금리",
-      usedFields: ["name", "금리(%)"],
+      usedFields: ["name", "금리(%)", "한도(만원)", "기간(년)"],
     };
   },
 
@@ -71,11 +77,12 @@ const PATTERNS = [
   (p) => {
     if (!p["한도(만원)"]) return null;
     const limit = fmt한도(p["한도(만원)"]);
+    const rate = p["금리(%)"] ? fmt금리(p["금리(%)"]) : "";
     return {
       slug: `${p.name}-한도`,
-      title: `${p.name} ${limit} 한도 | 대출 한도 배분 방법`,
+      title: `${p.name} ${limit} 한도 조건 | 금리 ${rate} 상환 기간 정리`,
       type: "한도",
-      usedFields: ["name", "한도(만원)"],
+      usedFields: ["name", "한도(만원)", "금리(%)"],
     };
   },
 
@@ -85,28 +92,36 @@ const PATTERNS = [
     const age = p["연령제한"];
     const maxAge = age.match(/(\d+)세/g);
     const upper = maxAge ? maxAge[maxAge.length - 1] : age;
+    const rate = p["금리(%)"] ? fmt금리(p["금리(%)"]) : "";
     return {
       slug: `${p.name}-나이`,
-      title: `${p.name} 나이 제한 ${upper} 넘으면 | 대체 상품 안내`,
+      title: `${p.name} 나이 ${age} 조건 | ${upper} 초과 시 대체 상품 금리 ${rate}`,
       type: "연령",
-      usedFields: ["name", "연령제한"],
+      usedFields: ["name", "연령제한", "금리(%)"],
     };
   },
 
   // 5. 신청방법
-  (p) => ({
-    slug: `${p.name}-신청방법`,
-    title: `${p.name} 신청 방법 ${(p["신청방법"] || []).includes("온라인(kinfa.or.kr)") ? "온라인" : "오프라인"} | 서류 준비부터 입금까지`,
-    type: "신청방법",
-    usedFields: ["name", "신청방법"],
-  }),
+  (p) => {
+    const methods = p["신청방법"] || [];
+    const channel = p["상담채널"] || "1397";
+    const methodStr = methods.length > 0 ? methods[0] : "방문";
+    return {
+      slug: `${p.name}-신청방법`,
+      title: `${p.name} 신청 방법 ${methodStr} | ${channel} 접수 절차`,
+      type: "신청방법",
+      usedFields: ["name", "신청방법", "상담채널"],
+    };
+  },
 
   // 6. 부결사유
   (p) => {
     if (!p["부결사유"] || p["부결사유"].length === 0) return null;
+    const top = p["부결사유"][0];
+    const count = p["부결사유"].length;
     return {
       slug: `${p.name}-부결`,
-      title: `${p.name} 부결 사유 재신청 | 거절 후 대처법`,
+      title: `${p.name} 부결 사유 ${count}가지 | ${top} 등 재신청 조건`,
       type: "부결",
       usedFields: ["name", "부결사유"],
     };
@@ -115,20 +130,24 @@ const PATTERNS = [
   // 7. 대환 (가능한 상품만)
   (p) => {
     if (!p["대환가능"]) return null;
+    const cond = p["대환조건"] || "기존 대출 전환";
+    const rate = p["금리(%)"] ? fmt금리(p["금리(%)"]) : "";
     return {
       slug: `${p.name}-대환`,
-      title: `${p.name} 대환 대출 방법 | ${p["대환조건"] ? p["대환조건"].slice(0, 15) : "기존 대출 전환"}`,
+      title: `${p.name} 대환 대출 금리 ${rate} | ${cond.slice(0, 20)}`,
       type: "대환",
-      usedFields: ["name", "대환가능", "대환조건"],
+      usedFields: ["name", "대환가능", "대환조건", "금리(%)"],
     };
   },
 
   // 8. 필요서류
   (p) => {
     if (!p["필요서류"] || p["필요서류"].length === 0) return null;
+    const count = p["필요서류"].length;
+    const first = p["필요서류"][0];
     return {
       slug: `${p.name}-서류`,
-      title: `${p.name} 필요서류 목록 | 서류 발급 방법까지 정리`,
+      title: `${p.name} 필요서류 ${count}종 | ${first} 등 준비 목록`,
       type: "필요서류",
       usedFields: ["name", "필요서류"],
     };
@@ -138,22 +157,25 @@ const PATTERNS = [
   (p) => {
     const targets = split대상(p["대상"]);
     if (targets.length <= 1) return null;
+    const rate = p["금리(%)"] ? fmt금리(p["금리(%)"]) : "";
+    const limit = p["한도(만원)"] ? fmt한도(p["한도(만원)"]) : "";
     return targets.map((t) => ({
       slug: `${p.name}-${t}`,
-      title: `${p.name} ${t} 신청 가능할까 | ${t} 대출 조건 정리`,
+      title: `${p.name} ${t} 신청 조건 | 금리 ${rate} 한도 ${limit}`,
       type: "대상",
-      usedFields: ["name", "대상"],
+      usedFields: ["name", "대상", "금리(%)", "한도(만원)"],
     }));
   },
 
   // 10. 신용점수 (있는 상품만)
   (p) => {
     if (!p["신용점수"]) return null;
+    const rate = p["금리(%)"] ? fmt금리(p["금리(%)"]) : "";
     return {
       slug: `${p.name}-신용점수`,
-      title: `${p.name} 신용점수 기준 ${p["신용점수"]} | 내 점수로 가능할까`,
+      title: `${p.name} 신용점수 ${p["신용점수"]} | 금리 ${rate} 한도 ${fmt한도(p["한도(만원)"])}`,
       type: "신용점수",
-      usedFields: ["name", "신용점수"],
+      usedFields: ["name", "신용점수", "금리(%)", "한도(만원)"],
     };
   },
 
@@ -161,33 +183,38 @@ const PATTERNS = [
   (p) => {
     if (!p["소득기준(만원)"]) return null;
     const income = p["소득기준(만원)"];
-    const label = typeof income === "number" ? `${income}만원` : income;
+    const label = typeof income === "number" ? `${income}만원 이하` : income;
+    const rate = p["금리(%)"] ? fmt금리(p["금리(%)"]) : "";
     return {
       slug: `${p.name}-소득기준`,
-      title: `${p.name} 소득기준 ${label} | 소득 확인 방법`,
+      title: `${p.name} 소득기준 ${label} | 금리 ${rate} 신청 자격`,
       type: "소득기준",
-      usedFields: ["name", "소득기준(만원)"],
+      usedFields: ["name", "소득기준(만원)", "금리(%)"],
     };
   },
 
   // 12. 취급기관
   (p) => {
     if (!p["취급기관"] || p["취급기관"].length === 0) return null;
-    const first = p["취급기관"][0];
+    const all = p["취급기관"];
+    const channel = p["상담채널"] || "";
     return {
       slug: `${p.name}-취급기관`,
-      title: `${p.name} 취급기관 ${first} 등 | 어디서 신청하나`,
+      title: `${p.name} 취급기관 ${all.join(" ")} | ${channel} 신청 접수`,
       type: "취급기관",
-      usedFields: ["name", "취급기관"],
+      usedFields: ["name", "취급기관", "상담채널"],
     };
   },
 
   // 13. 상환방식
   (p) => {
     if (!p["상환방식"]) return null;
+    const rate = p["금리(%)"] ? fmt금리(p["금리(%)"]) : "";
+    const limit = p["한도(만원)"] ? fmt한도(p["한도(만원)"]) : "";
+    const period = p["기간(년)"] ? `${p["기간(년)"]}년` : "";
     return {
       slug: `${p.name}-상환`,
-      title: `${p.name} 상환방식 월 상환액 | ${p["상환방식"].split("(")[0].trim()} 계산`,
+      title: `${p.name} ${p["상환방식"].split("(")[0].trim()} | ${limit} ${rate} ${period} 월 상환액`,
       type: "상환방식",
       usedFields: ["name", "상환방식", "금리(%)", "한도(만원)", "기간(년)"],
     };
@@ -205,9 +232,13 @@ function generateComparisons(products) {
       const b = products[names[j]];
       if (!a || !b) continue;
 
+      const rateA = a["금리(%)"] ? fmt금리(a["금리(%)"]) : "";
+      const rateB = b["금리(%)"] ? fmt금리(b["금리(%)"]) : "";
+      const limitA = a["한도(만원)"] ? fmt한도(a["한도(만원)"]) : "";
+      const limitB = b["한도(만원)"] ? fmt한도(b["한도(만원)"]) : "";
       results.push({
         slug: `${a.name}-vs-${b.name}`,
-        title: `${a.name} vs ${b.name} 차이 비교 | 금리 한도 자격 총정리`,
+        title: `${a.name} vs ${b.name} 비교 | 금리 ${rateA} vs ${rateB} 한도 ${limitA} vs ${limitB}`,
         type: "비교",
         usedFields: ["금리(%)", "한도(만원)", "대상", "신용점수"],
         products: [a.name, b.name],
