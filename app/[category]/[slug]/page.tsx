@@ -6,6 +6,8 @@ import { FAQSection } from "@/components/FAQSection";
 import { CategorySidebar } from "@/components/CategorySidebar";
 import { ShareButtons } from "@/components/ShareButtons";
 import { AuthorBio } from "@/components/AuthorBio";
+import { ProductInfoCard } from "@/components/ProductInfoCard";
+import { LoanConditionTable } from "@/components/LoanConditionTable";
 import { getSpokeArticle } from "@/data/articles";
 import { spokeArticles } from "@/data/articles";
 import { categories } from "@/data/categories";
@@ -146,6 +148,13 @@ export default async function SpokePage({ params }: PageProps) {
       {/* 2-column layout */}
       <div className="mx-auto max-w-5xl px-4 lg:flex lg:gap-8">
         <div className="flex-1 max-w-3xl">
+          {/* Product Info Card */}
+          {article.productInfo && (
+            <div className="py-6">
+              <ProductInfoCard info={article.productInfo} />
+            </div>
+          )}
+
           {/* Article Sections */}
           <article>
             {article.sections.map((section, i) => {
@@ -166,6 +175,12 @@ export default async function SpokePage({ params }: PageProps) {
                     </div>
                     {i < article.sections.length - 1 && <hr className="mt-8 border-gray-200" />}
                   </section>
+                  {i === 0 && article.conditions && article.conditions.length > 0 && (
+                    <>
+                      <LoanConditionTable conditions={article.conditions} slug={spokeSlug} />
+                      <hr className="mt-2 border-gray-200" />
+                    </>
+                  )}
                 </Fragment>
               );
             })}

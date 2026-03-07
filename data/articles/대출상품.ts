@@ -60,6 +60,28 @@ export const spokes: Record<string, LoanSpokeArticle> = {
       "햇살론유스의 신청자격, 금리, 한도, 신청방법을 상세히 안내해요.",
     heroDescription:
       "대학생, 취업준비생, 사회초년생을 위한 정부지원 저금리 대출이에요. 연 3.5%~4.5%의 낮은 금리로 학자금과 생활자금을 지원받을 수 있어요.",
+    productInfo: {
+      name: "햇살론유스",
+      category: "청년 대출",
+      description: "만 19~34세 청년을 위한 정부지원 저금리 생활자금·학자금 대출",
+      interestRate: "연 3.5~4.5%",
+      limit: "최대 1,200만원",
+      period: "최대 15년",
+      provider: "서민금융진흥원",
+      ctaLabel: "서민금융진흥원에서 신청하기",
+      ctaUrl: "https://www.kinfa.or.kr",
+      updatedAt: "2026.03.07",
+    },
+    conditions: [
+      { label: "금리", value: "연 3.5~4.5%", type: "core" },
+      { label: "한도", value: "학자금 900만원 + 생활자금 300만원 (합계 1,200만원)", type: "core" },
+      { label: "기간", value: "거치기간 포함 최대 15년", type: "core" },
+      { label: "연령", value: "만 19~34세", type: "eligibility" },
+      { label: "소득", value: "연소득 3,500만원 이하 또는 기준중위소득 100% 이하", type: "eligibility" },
+      { label: "대상", value: "대학생, 취업준비생, 사회초년생", type: "eligibility" },
+      { label: "상환방식", value: "원리금균등분할상환 (소득연동 선택 가능)", type: "note" },
+      { label: "보증기관", value: "서민금융진흥원", type: "note" },
+    ],
     faq: [
       {
         question: "햇살론유스 신청 조건이 뭔가요?",
@@ -123,6 +145,28 @@ export const spokes: Record<string, LoanSpokeArticle> = {
       "햇살론15의 신청자격, 금리, 한도, 신청방법을 상세히 안내해요.",
     heroDescription:
       "신용점수가 낮아서 은행 대출이 어려운 분들을 위한 정부 보증 대출이에요. 불법 사금융 대신 연 15.9% 이내의 합법적인 대출을 받을 수 있어요.",
+    productInfo: {
+      name: "햇살론15",
+      category: "저신용자 대출",
+      description: "신용점수 하위 20% 저신용·저소득 서민을 위한 정부 보증 대출",
+      interestRate: "최대 연 15.9%",
+      limit: "최대 700만원",
+      period: "3~5년",
+      provider: "서민금융진흥원",
+      ctaLabel: "서민금융진흥원에서 상담받기",
+      ctaUrl: "https://www.kinfa.or.kr",
+      updatedAt: "2026.03.07",
+    },
+    conditions: [
+      { label: "금리", value: "연 15.9% 이내 (실제 연 10~14% 수준)", type: "core" },
+      { label: "한도", value: "생활자금 600만원 + 긴급자금 100만원 (합계 700만원)", type: "core" },
+      { label: "기간", value: "3년 또는 5년 선택", type: "core" },
+      { label: "소득", value: "연소득 3,500만원 이하", type: "eligibility" },
+      { label: "신용점수", value: "하위 20% (744점 이하)", type: "eligibility" },
+      { label: "대상", value: "저신용·저소득 서민", type: "eligibility" },
+      { label: "상환방식", value: "원리금균등분할상환", type: "note" },
+      { label: "보증비율", value: "95% (보증료 금리 포함)", type: "note" },
+    ],
     faq: [
       {
         question: "햇살론15 신청 조건이 뭔가요?",
@@ -186,6 +230,28 @@ export const spokes: Record<string, LoanSpokeArticle> = {
       "햇살론뱅크의 신청자격, 금리, 한도, 신청방법을 상세히 안내해요.",
     heroDescription:
       "은행 대출은 어렵고 고금리 대출은 부담스러운 분들을 위한 중금리 대출이에요. 기존 고금리 대출을 대환하는 데도 활용할 수 있어요.",
+    productInfo: {
+      name: "햇살론뱅크",
+      category: "중금리 대출",
+      description: "중·저신용자를 위한 정부지원 중금리 대출 (대환대출 가능)",
+      interestRate: "연 6~10.5%",
+      limit: "최대 2,000만원",
+      period: "최대 5년",
+      provider: "서민금융진흥원",
+      ctaLabel: "서민금융진흥원에서 상담받기",
+      ctaUrl: "https://www.kinfa.or.kr",
+      updatedAt: "2026.03.07",
+    },
+    conditions: [
+      { label: "금리", value: "연 6~10.5% (기관별 상이)", type: "core" },
+      { label: "한도", value: "최대 2,000만원", type: "core" },
+      { label: "기간", value: "최대 5년", type: "core" },
+      { label: "소득", value: "연소득 4,500만원 이하", type: "eligibility" },
+      { label: "신용점수", value: "하위 20~50% (745~919점)", type: "eligibility" },
+      { label: "대상", value: "중·저신용자 (대환대출 포함)", type: "eligibility" },
+      { label: "상환방식", value: "원리금균등분할상환 (거치기간 없음)", type: "note" },
+      { label: "보증기관", value: "서민금융진흥원", type: "note" },
+    ],
     faq: [
       {
         question: "햇살론뱅크 신청 조건이 뭔가요?",
@@ -244,6 +310,28 @@ export const spokes: Record<string, LoanSpokeArticle> = {
       "미소금융의 신청자격, 금리, 한도, 신청방법을 상세히 안내해요.",
     heroDescription:
       "미소금융은 저소득·저신용 계층의 경제적 자립을 돕는 무담보·무보증 소액대출이에요. 연 2~4.5%의 초저금리로 창업자금, 운영자금, 긴급생계자금을 지원해요.",
+    productInfo: {
+      name: "미소금융",
+      category: "소액대출",
+      description: "저소득·저신용 계층을 위한 무담보·무보증 초저금리 소액대출",
+      interestRate: "연 2~4.5%",
+      limit: "최대 2,000만원",
+      period: "최대 6년",
+      provider: "서민금융진흥원",
+      ctaLabel: "서민금융진흥원에서 상담받기",
+      ctaUrl: "https://www.kinfa.or.kr",
+      updatedAt: "2026.03.07",
+    },
+    conditions: [
+      { label: "금리", value: "연 2~4.5% (긴급생계자금 연 2%)", type: "core" },
+      { label: "한도", value: "창업 7,000만원 / 운영 2,000만원 / 긴급 100만원", type: "core" },
+      { label: "기간", value: "최대 6년 (거치 1년 포함)", type: "core" },
+      { label: "소득", value: "기준중위소득 100% 이하", type: "eligibility" },
+      { label: "대상", value: "기초생활수급자, 차상위계층, 신용점수 하위 10%", type: "eligibility" },
+      { label: "담보", value: "무담보·무보증", type: "eligibility" },
+      { label: "상환방식", value: "원리금균등분할상환", type: "note" },
+      { label: "보증기관", value: "서민금융진흥원", type: "note" },
+    ],
     faq: [
       {
         question: "미소금융은 누가 신청할 수 있나요?",
@@ -302,6 +390,28 @@ export const spokes: Record<string, LoanSpokeArticle> = {
       "새희망홀씨의 신청자격, 금리, 한도, 신청방법을 상세히 안내해요.",
     heroDescription:
       "새희망홀씨는 시중은행에서 취급하는 대표적인 서민대출이에요. 연소득이 낮거나 신용점수가 낮은 분들도 은행에서 직접 대출받을 수 있어요.",
+    productInfo: {
+      name: "새희망홀씨",
+      category: "은행 서민대출",
+      description: "시중은행에서 취급하는 저소득·저신용 근로자 대상 서민대출",
+      interestRate: "연 8~10.5%",
+      limit: "최대 2,500만원",
+      period: "최대 5년",
+      provider: "금융위원회 · 시중은행",
+      ctaLabel: "가까운 은행에서 상담받기",
+      ctaUrl: "https://www.fsc.go.kr",
+      updatedAt: "2026.03.07",
+    },
+    conditions: [
+      { label: "금리", value: "연 8~10.5% (은행별 상이)", type: "core" },
+      { label: "한도", value: "최대 2,500만원", type: "core" },
+      { label: "기간", value: "최대 5년", type: "core" },
+      { label: "소득", value: "연소득 3,500만원 이하", type: "eligibility" },
+      { label: "신용점수", value: "하위 10% 이내 또는 6등급 이하", type: "eligibility" },
+      { label: "대상", value: "저소득·저신용 근로자 (자영업·프리랜서 포함)", type: "eligibility" },
+      { label: "상환방식", value: "원리금균등분할상환", type: "note" },
+      { label: "취급기관", value: "KB국민, 신한, 하나, 우리, NH농협 등 시중은행", type: "note" },
+    ],
     faq: [
       {
         question: "새희망홀씨는 어느 은행에서 신청하나요?",
@@ -360,6 +470,28 @@ export const spokes: Record<string, LoanSpokeArticle> = {
       "긴급생계자금의 신청자격, 금리, 한도, 신청방법을 상세히 안내해요.",
     heroDescription:
       "실직, 질병, 재해 등 갑작스러운 위기 상황에 처한 서민을 위한 긴급 소액 대출이에요. 연 3% 이내의 초저금리로 최대 100만원까지 빠르게 지원받을 수 있어요.",
+    productInfo: {
+      name: "긴급생계자금",
+      category: "긴급 대출",
+      description: "갑작스러운 위기 상황(실직·질병·재해)에 빠르게 지원하는 소액 대출",
+      interestRate: "연 3% 이내",
+      limit: "최대 100만원",
+      period: "최대 2년",
+      provider: "서민금융진흥원",
+      ctaLabel: "서민금융통합지원센터 찾기",
+      ctaUrl: "https://www.kinfa.or.kr",
+      updatedAt: "2026.03.07",
+    },
+    conditions: [
+      { label: "금리", value: "연 3% 이내", type: "core" },
+      { label: "한도", value: "최대 100만원", type: "core" },
+      { label: "기간", value: "최대 2년", type: "core" },
+      { label: "소득", value: "연소득 2,200만원 이하", type: "eligibility" },
+      { label: "대상", value: "실직·질병·재해 등 위기 사유 발생 서민", type: "eligibility" },
+      { label: "증빙", value: "위기 사유 증빙서류 필수", type: "eligibility" },
+      { label: "상환방식", value: "원리금균등분할상환", type: "note" },
+      { label: "보증기관", value: "서민금융진흥원", type: "note" },
+    ],
     faq: [
       {
         question: "긴급생계자금은 누구나 신청할 수 있나요?",

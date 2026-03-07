@@ -8,6 +8,25 @@ export interface ArticleSection {
   content: string;
 }
 
+export interface LoanProductInfo {
+  name: string;
+  category: string;
+  description: string;
+  interestRate: string;
+  limit: string;
+  period: string;
+  provider: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  updatedAt: string;
+}
+
+export interface LoanConditionRow {
+  label: string;
+  value: string;
+  type: "core" | "eligibility" | "note";
+}
+
 export interface LoanSpokeArticle {
   slug: string;
   categorySlug: string;
@@ -16,6 +35,8 @@ export interface LoanSpokeArticle {
   metaDescription: string;
   description: string;
   heroDescription: string;
+  productInfo: LoanProductInfo;
+  conditions: LoanConditionRow[];
   faq: FAQItem[];
   sections: ArticleSection[];
   datePublished?: string;
