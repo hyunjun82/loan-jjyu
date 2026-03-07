@@ -1,11 +1,21 @@
 {
   "requiredFields": ["name", "source", "fetchedAt"],
-  "optionalFields": ["금리(%)", "한도(만원)", "기간(년)", "기간(개월)", "연령제한", "소득기준(만원)", "신용점수", "url"],
+  "optionalFields": [
+    "금리(%)", "한도(만원)", "기간(년)", "기간(개월)",
+    "연령제한", "소득기준(만원)", "신용점수", "url",
+    "대상", "보증기관",
+    "부결사유", "필요서류", "취급기관", "상환방식",
+    "대환가능", "대환조건", "상담채널", "신청방법"
+  ],
   "fieldTypes": {
     "name": "string",
     "source": "string",
     "fetchedAt": "string",
-    "url": "string"
+    "url": "string",
+    "부결사유": "array",
+    "필요서류": "array",
+    "취급기관": "array",
+    "신청방법": "array"
   },
   "minContentLength": {
     "name": 2
