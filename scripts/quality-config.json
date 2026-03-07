@@ -1,0 +1,46 @@
+{
+  "freshness": {
+    "maxAgeDays": 180
+  },
+  "factCheck": {
+    "numberPatterns": [
+      { "pattern": "연\\s*(\\d+[.]?\\d*)\\s*%", "label": "금리(%)" },
+      { "pattern": "최대\\s*(\\d[,\\d]*)\\s*만원", "label": "한도(만원)" },
+      { "pattern": "최대\\s*(\\d[,\\d]*)\\s*원", "label": "한도(원)" },
+      { "pattern": "(\\d+)\\s*년", "label": "기간(년)" },
+      { "pattern": "(\\d+)\\s*개월", "label": "기간(개월)" },
+      { "pattern": "만\\s*(\\d+)\\s*세", "label": "연령제한" },
+      { "pattern": "연소득\\s*(\\d[,\\d]*)\\s*만원", "label": "소득기준(만원)" },
+      { "pattern": "(\\d+)\\s*점\\s*(이하|이상)", "label": "신용점수" }
+    ]
+  },
+  "style": {
+    "forbiddenEndings": ["습니다", "됩니다", "있습니다", "없습니다"],
+    "forbiddenWords": [
+      "살펴보겠습니다", "알아보겠습니다", "정리해 보겠습니다",
+      "마무리하겠습니다", "도움이 되셨기를", "오늘은", "이번 글에서는",
+      "여러분", "독자", "함께 알아보", "핵심 포인트", "총정리해 드"
+    ],
+    "maxForbiddenWordCount": 0,
+    "fillerPatterns": [
+      "궁금하셨죠", "다들 아시다시피", "사실 알고 보면",
+      "결론부터 말씀드리면", "지금부터 하나씩"
+    ],
+    "maxConsecutiveSameEnding": 3,
+    "maxConsecutiveSameStart": 3
+  },
+  "structure": {
+    "minSections": 4,
+    "minSectionLength": 300,
+    "minParagraphsPerSection": 3,
+    "requiredSectionKeywords": ["개요", "신청", "금리", "주의"]
+  },
+  "selfCheck": {
+    "negationPairs": [
+      ["신청할 수 없", "신청할 수 있"],
+      ["이용 불가", "이용 가능"],
+      ["대출 불가", "대출 가능"],
+      ["제한", "가능"]
+    ]
+  }
+}
