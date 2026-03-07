@@ -1,6 +1,15 @@
 {
   "requiredFields": ["name", "source", "fetchedAt"],
   "optionalFields": ["금리(%)", "한도(만원)", "기간(년)", "기간(개월)", "연령제한", "소득기준(만원)", "신용점수", "url"],
+  "fieldTypes": {
+    "name": "string",
+    "source": "string",
+    "fetchedAt": "string",
+    "url": "string"
+  },
+  "minContentLength": {
+    "name": 2
+  },
   "sources": [
     "금융위원회",
     "서민금융진흥원",

@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -q 'source-data/'; then node /home/user/loan-jjyu/.claude/hooks/track-source-read.js log \"$(echo \"$CLAUDE_TOOL_INPUT\" | grep -o '[^/]*\\.json')\"; fi",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PreToolUse:Edit": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node /home/user/loan-jjyu/.claude/hooks/pre-edit-verify.js \"$CLAUDE_FILE_PATH\" 2>/dev/null || true",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -3,42 +3,42 @@
     "name": "햇살론유스",
     "source": "서민금융진흥원",
     "file": "햇살론유스.json",
-    "fetchedAt": null,
+    "fetchedAt": "2026-03-07",
     "url": "https://www.kinfa.or.kr"
   },
   "햇살론15": {
     "name": "햇살론15",
     "source": "서민금융진흥원",
     "file": "햇살론15.json",
-    "fetchedAt": null,
+    "fetchedAt": "2026-03-07",
     "url": "https://www.kinfa.or.kr"
   },
   "햇살론뱅크": {
     "name": "햇살론뱅크",
     "source": "서민금융진흥원",
     "file": "햇살론뱅크.json",
-    "fetchedAt": null,
+    "fetchedAt": "2026-03-07",
     "url": "https://www.kinfa.or.kr"
   },
   "미소금융": {
     "name": "미소금융",
     "source": "서민금융진흥원",
     "file": "미소금융.json",
-    "fetchedAt": null,
+    "fetchedAt": "2026-03-07",
     "url": "https://www.kinfa.or.kr"
   },
   "새희망홀씨": {
     "name": "새희망홀씨",
     "source": "금융위원회",
     "file": "새희망홀씨.json",
-    "fetchedAt": null,
+    "fetchedAt": "2026-03-07",
     "url": "https://www.fsc.go.kr"
   },
   "긴급생계자금": {
     "name": "긴급생계자금",
     "source": "서민금융진흥원",
     "file": "긴급생계자금.json",
-    "fetchedAt": null,
+    "fetchedAt": "2026-03-07",
     "url": "https://www.kinfa.or.kr"
   }
 }
