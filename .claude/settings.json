@@ -10,15 +10,23 @@
             "timeout": 5000
           }
         ]
-      }
-    ],
-    "PreToolUse:Edit": [
+      },
       {
         "matcher": "Edit",
         "hooks": [
           {
             "type": "command",
-            "command": "node /home/user/loan-jjyu/.claude/hooks/pre-edit-verify.js \"$CLAUDE_FILE_PATH\" 2>/dev/null || true",
+            "command": "FILE_PATH=$(echo \"$CLAUDE_TOOL_INPUT\" | node -e \"const d=require('fs').readFileSync('/dev/stdin','utf8');try{console.log(JSON.parse(d).file_path)}catch{}\"); if [ -n \"$FILE_PATH\" ]; then node /home/user/loan-jjyu/.claude/hooks/pre-edit-verify.js \"$FILE_PATH\"; fi",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE_PATH=$(echo \"$CLAUDE_TOOL_INPUT\" | node -e \"const d=require('fs').readFileSync('/dev/stdin','utf8');try{console.log(JSON.parse(d).file_path)}catch{}\"); if [ -n \"$FILE_PATH\" ]; then node /home/user/loan-jjyu/.claude/hooks/pre-edit-verify.js \"$FILE_PATH\"; fi",
             "timeout": 5000
           }
         ]
