@@ -4,6 +4,10 @@ import { hub as 자산형성Hub, spokes as 자산형성Spokes } from "./자산�
 import { hub as 사회적금융Hub, spokes as 사회적금융Spokes } from "./사회적금융";
 import { hub as 보증보험Hub, spokes as 보증보험Spokes } from "./보증보험";
 import { hub as 신용채무Hub, spokes as 신용채무Spokes } from "./신용채무";
+import { hub as haesallonYouthHub, spokes as haesallonYouthSpokesArr } from "./haesallon-youth-spokes-1";
+
+const haesallonYouthSpokes: Record<string, LoanSpokeArticle> =
+  Object.fromEntries(haesallonYouthSpokesArr.map((s) => [s.slug, s as LoanSpokeArticle]));
 
 export const hubArticles: Record<string, LoanHubArticle> = {
   대출상품: 대출상품Hub,
@@ -11,6 +15,7 @@ export const hubArticles: Record<string, LoanHubArticle> = {
   사회적금융: 사회적금융Hub,
   보증보험: 보증보험Hub,
   신용채무: 신용채무Hub,
+  "haesallon-youth": haesallonYouthHub,
 };
 
 export const spokeArticles: Record<string, Record<string, LoanSpokeArticle>> = {
@@ -19,6 +24,7 @@ export const spokeArticles: Record<string, Record<string, LoanSpokeArticle>> = {
   사회적금융: 사회적금융Spokes,
   보증보험: 보증보험Spokes,
   신용채무: 신용채무Spokes,
+  "haesallon-youth": haesallonYouthSpokes,
 };
 
 export function getHubArticle(categorySlug: string): LoanHubArticle | undefined {

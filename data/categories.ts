@@ -36,4 +36,11 @@ export const categories: Category[] = [
     description: "신용회복 및 채무조정 프로그램",
     count: 2,
   },
+  {
+    name: "햇살론유스",
+    slug: "haesallon-youth",
+    icon: "🌞",
+    description: "만 19~34세 청년을 위한 서민금융 대출",
+    count: 14,
+  },
 ];

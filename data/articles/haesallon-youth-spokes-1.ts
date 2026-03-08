@@ -1,7 +1,7 @@
-import type { HubArticle, SpokeArticle } from "@/lib/types";
+import type { LoanHubArticle, LoanSpokeArticle } from "@/lib/types";
 
 // ─── 햇살론유스 Hub ───────────────────────────────────────────────
-export const hub: HubArticle = {
+export const hub: LoanHubArticle = {
   categorySlug: "haesallon-youth",
   title: "햇살론유스 — 청년 서민금융 대출 안내",
   h1: "햇살론유스 — 청년 서민금융 대출 안내",
@@ -29,7 +29,7 @@ export const hub: HubArticle = {
 };
 
 // ─── 햇살론유스 Spokes ────────────────────────────────────────────
-export const spokes: SpokeArticle[] = [
+export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 1. 신청조건 ─────────────────────────────────────────────────
   {

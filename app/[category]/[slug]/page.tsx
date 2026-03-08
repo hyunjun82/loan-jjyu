@@ -173,9 +173,13 @@ export default async function SpokePage({ params }: PageProps) {
                       <h2 className="text-lg font-bold text-gray-900">{section.title}</h2>
                     </div>
                     <div className="text-[15px] text-gray-600 leading-[1.85] sm:text-[16px] pl-[42px] space-y-3">
-                      {section.content.split("\n\n").map((paragraph, pi) => (
-                        <p key={pi}>{paragraph}</p>
-                      ))}
+                      {section.content.includes("<p>") ? (
+                        <div dangerouslySetInnerHTML={{ __html: section.content }} />
+                      ) : (
+                        section.content.split("\n\n").map((paragraph, pi) => (
+                          <p key={pi}>{paragraph}</p>
+                        ))
+                      )}
                     </div>
                     {i < article.sections.length - 1 && <hr className="mt-8 border-gray-200" />}
                   </section>

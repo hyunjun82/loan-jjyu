@@ -35,8 +35,8 @@ export interface LoanSpokeArticle {
   metaDescription: string;
   description: string;
   heroDescription: string;
-  productInfo: LoanProductInfo;
-  conditions: LoanConditionRow[];
+  productInfo?: LoanProductInfo;
+  conditions?: LoanConditionRow[];
   faq: FAQItem[];
   sections: ArticleSection[];
   datePublished?: string;

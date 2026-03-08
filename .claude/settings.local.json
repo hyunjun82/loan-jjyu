@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/verify-all.js)",
+      "WebFetch(domain:apis.data.go.kr)",
+      "WebFetch(domain:www.data.go.kr)",
+      "mcp__playwright__browser_navigate",
+      "Bash(curl -s \"https://apis.data.go.kr/1160100/service/GetSmallLoanFinanceInstituteInfoService/getOrdinaryFinanceInfo?serviceKey=cf7552de3d61cdff45c878062b431dd4578ca18c4487cd44f545477356f2947b&type=json&numOfRows=100&pageNo=1\")"
+    ]
+  }
+}
