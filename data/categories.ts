@@ -43,4 +43,11 @@ export const categories: Category[] = [
     description: "만 19~34세 청년을 위한 서민금융 대출",
     count: 14,
   },
+  {
+    name: "햇살론15",
+    slug: "햇살론15",
+    icon: "🏧",
+    description: "저신용·저소득 서민을 위한 서민금융 보증 대출",
+    count: 3,
+  },
 ];
