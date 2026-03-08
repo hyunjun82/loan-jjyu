@@ -76,9 +76,10 @@ function verify(categorySlug, spokeSlug) {
   // 출처 데이터와 교차 검증
   const sourceData = loadSourceData(spokeSlug);
   if (!sourceData) {
-    results.warnings.push(
-      `출처 데이터 없음 (${spokeSlug}) — 교차검증 스킵. source-data/ 에 데이터를 추가하세요.`
+    results.errors.push(
+      `[L2 차단] 출처 데이터 없음 (${spokeSlug}) — source-data/${spokeSlug}.json 확보 후 재작성하세요.`
     );
+    results.pass = false;
     return results;
   }
 

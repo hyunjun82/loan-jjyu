@@ -31,10 +31,45 @@ function run() {
   // L2: Fact Gate
   console.log("━━━ L2 Fact Gate ━━━");
   try {
+    const fs = require("fs");
+    const path = require("path");
+    const SOURCE_DIR = path.join(__dirname, "..", "source-data");
+    const ARTICLES_DIR = path.join(__dirname, "..", "data", "articles");
+    const sourceMap = JSON.parse(fs.readFileSync(path.join(SOURCE_DIR, "source-map.json"), "utf-8"));
+    const articleFiles = fs.readdirSync(ARTICLES_DIR).filter((f) => f.endsWith(".ts") && f !== "index.ts");
+    const l2Errors = [];
+
+    for (const file of articleFiles) {
+      const content = fs.readFileSync(path.join(ARTICLES_DIR, file), "utf-8");
+      // spoke 글이 있는지 확인 (sections 필드가 있으면 spoke 글 존재)
+      const hasSpokes = content.includes("sections:");
+      if (!hasSpokes) continue;
+      // 파일 내 categorySlug 값 추출
+      const catMatch = content.match(/categorySlug:\s*["']([^"']+)["']/);
+      const catSlug = catMatch ? catMatch[1] : file.replace(".ts", "");
+      // 이 카테고리의 소스 데이터가 있는지 확인
+      const sourceEntry = sourceMap[catSlug] || Object.values(sourceMap).find((v) => v.name === catSlug);
+      if (!sourceEntry) {
+        l2Errors.push(`[차단] "${catSlug}" 카테고리 소스 없음 — source-map.json에 등록 후 재작성하세요`);
+        allPass = false;
+      } else {
+        const srcFile = path.join(SOURCE_DIR, sourceEntry.file);
+        if (!fs.existsSync(srcFile)) {
+          l2Errors.push(`[차단] "${catSlug}" 소스 파일 없음 — ${sourceEntry.file} 확보 필요`);
+          allPass = false;
+        }
+      }
+    }
+
     const l2 = verifyFacts();
     console.log(`  전체 팩트: ${l2.totalFacts}개`);
     l2.articles.forEach((a) => console.log(`  [${a.category}] ${a.factsFound}개 팩트 추출`));
-    console.log("  → ✅ 팩트 추출 완료 (교차검증은 개별 실행)\n");
+    if (l2Errors.length > 0) {
+      l2Errors.forEach((e) => console.log(`  ❌ ${e}`));
+      console.log("  → ❌ 실패\n");
+    } else {
+      console.log("  → ✅ 통과\n");
+    }
   } catch (e) {
     console.log(`  ⚠ 스킵: ${e.message}\n`);
   }

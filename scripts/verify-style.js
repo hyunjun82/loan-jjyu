@@ -14,7 +14,9 @@ function getSentences(text) {
   return text
     .split(/[.!?\n]/)
     .map((s) => s.trim())
-    .filter((s) => s.length > 5);
+    .filter((s) => s.length > 5)
+    .filter((s) => /[가-힣]/.test(s))  // 한국어 포함 문장만
+    .filter((s) => /[가-힣요죠네다]$/.test(s.replace(/["""'`\s]/g, ""))); // 한국어로 끝나는 문장만
 }
 
 function checkForbiddenEndings(sentences) {
@@ -64,6 +66,8 @@ function checkFillerPatterns(text) {
 function checkConsecutiveEndings(sentences) {
   const issues = [];
   const max = CONFIG.style.maxConsecutiveSameEnding || 3;
+  // 해요체 필수 어미는 연속 반복 허용
+  const allowedEndings = ["요", "죠", "네요", "어요", "아요", "예요", "이요"];
 
   // Extract last 2-char endings
   const endings = sentences
@@ -74,7 +78,8 @@ function checkConsecutiveEndings(sentences) {
   for (let i = 1; i < endings.length; i++) {
     if (endings[i] === endings[i - 1]) {
       streak++;
-      if (streak > max) {
+      const isAllowed = allowedEndings.some((e) => endings[i].endsWith(e[e.length - 1]));
+      if (streak > max && !isAllowed) {
         issues.push({
           type: "어미 반복",
           detail: `"${endings[i]}" ${streak}회 연속 (기준: ${max}회)`,
