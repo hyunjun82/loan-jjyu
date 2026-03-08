@@ -14,12 +14,18 @@ function getChangedArticleFiles() {
   const args = process.argv.slice(2);
   if (args.length > 0) return args;
 
-  // git diff로 변경된 article 파일 추출
+  // push되는 커밋에서 변경된 article 파일 추출
   try {
     const { execSync } = require("child_process");
-    const diff = execSync("git diff --cached --name-only -- data/articles/", {
-      encoding: "utf-8",
-    });
+    // 원격과 비교하여 push 대상 커밋의 변경 파일 확인
+    let diff = "";
+    try {
+      const remote = execSync("git rev-parse --abbrev-ref --symbolic-full-name @{u}", { encoding: "utf-8" }).trim();
+      diff = execSync(`git diff ${remote}..HEAD --name-only -- data/articles/`, { encoding: "utf-8" });
+    } catch {
+      // 원격 추적 브랜치 없으면 최근 커밋 기준
+      diff = execSync("git diff HEAD~1..HEAD --name-only -- data/articles/", { encoding: "utf-8" });
+    }
     return diff
       .split("\n")
       .filter((f) => f.endsWith(".ts") && !f.endsWith("index.ts"));
