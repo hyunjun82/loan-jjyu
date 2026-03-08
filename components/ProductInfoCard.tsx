@@ -1,4 +1,4 @@
-import { ExternalLink, Landmark } from "lucide-react";
+import { ChevronRight, Landmark } from "lucide-react";
 import type { LoanProductInfo } from "@/lib/types";
 
 interface ProductInfoCardProps {
@@ -45,12 +45,10 @@ export function ProductInfoCard({ info }: ProductInfoCardProps) {
 
       <a
         href={info.ctaUrl}
-        target="_blank"
-        rel="noopener noreferrer"
         className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-blue-700"
       >
         {info.ctaLabel}
-        <ExternalLink className="h-4 w-4" />
+        <ChevronRight className="h-4 w-4" />
       </a>
     </div>
   );

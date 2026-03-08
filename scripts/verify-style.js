@@ -117,6 +117,34 @@ function checkConsecutiveStarts(sentences) {
   return issues;
 }
 
+// 연결어 반복 사용 감지 — 같은 연결어로 시작하는 문단이 전체의 20% 초과 시 경고
+function checkDiscourseMarkerRepetition(text) {
+  const issues = [];
+  const markers = [
+    "이때", "반면", "따라서", "이후", "참고로", "또한", "한편",
+    "그러나", "하지만", "그리고", "그런데", "아울러", "더불어",
+  ];
+  // <p> 태그 또는 빈줄로 나뉜 문단 추출
+  const paragraphs = text
+    .split(/<p>|\n\n/)
+    .map((p) => p.replace(/<[^>]+>/g, "").trim())
+    .filter((p) => p.length > 10 && /[가-힣]/.test(p));
+
+  if (paragraphs.length < 5) return issues; // 문단 적으면 스킵
+
+  for (const marker of markers) {
+    const count = paragraphs.filter((p) => p.startsWith(marker)).length;
+    const ratio = count / paragraphs.length;
+    if (ratio > 0.2 && count >= 3) {
+      issues.push({
+        type: "연결어 반복",
+        detail: `"${marker}"로 시작하는 문단 ${count}개 (전체 ${paragraphs.length}개의 ${Math.round(ratio * 100)}%) — 자연스럽게 바꾸세요`,
+      });
+    }
+  }
+  return issues;
+}
+
 function verifyText(text, label) {
   const sentences = getSentences(text);
   const issues = [
@@ -125,6 +153,7 @@ function verifyText(text, label) {
     ...checkFillerPatterns(text),
     ...checkConsecutiveEndings(sentences),
     ...checkConsecutiveStarts(sentences),
+    ...checkDiscourseMarkerRepetition(text),
   ];
 
   return {

@@ -156,9 +156,6 @@ export default async function SpokePage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Viz: top */}
-          <ArticleViz slug={catSlug} position="top" />
-
           {/* Article Sections */}
           <article>
             {article.sections.map((section, i) => {
@@ -172,6 +169,8 @@ export default async function SpokePage({ params }: PageProps) {
                       </div>
                       <h2 className="text-lg font-bold text-gray-900">{section.title}</h2>
                     </div>
+                    {/* Viz: 첫 번째 섹션 소제목 아래에만 표시 */}
+                    {i === 0 && <ArticleViz slug={catSlug} position="top" />}
                     <div className="text-[15px] text-gray-600 leading-[1.85] sm:text-[16px] pl-[42px] space-y-3">
                       {section.content.includes("<p>") ? (
                         <div className="prose-custom" dangerouslySetInnerHTML={{ __html: section.content }} />
