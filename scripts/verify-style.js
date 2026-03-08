@@ -123,6 +123,7 @@ function checkDiscourseMarkerRepetition(text) {
   const markers = [
     "이때", "반면", "따라서", "이후", "참고로", "또한", "한편",
     "그러나", "하지만", "그리고", "그런데", "아울러", "더불어",
+    "다만", "먼저", "그래서", "마지막으로", "우선", "특히",
   ];
   // <p> 태그 또는 빈줄로 나뉜 문단 추출
   const paragraphs = text

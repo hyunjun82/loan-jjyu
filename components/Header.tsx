@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Landmark, Menu, X } from "lucide-react"
-import { CATEGORIES } from "@/lib/data"
+import { categories } from "@/data/categories"
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -23,22 +23,15 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-0.5">
-          {CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <Link
               key={cat.slug}
-              href={`/products/${cat.slug}`}
+              href={`/${cat.slug}`}
               className="px-3 py-2 text-[13px] font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-100/80 rounded-lg transition-all"
             >
               {cat.name}
             </Link>
           ))}
-          <div className="w-px h-5 bg-gray-200 mx-1" />
-          <Link
-            href="/guides"
-            className="px-3 py-2 text-[13px] font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-all"
-          >
-            가이드
-          </Link>
         </nav>
 
         {/* Mobile toggle */}
@@ -54,24 +47,16 @@ export default function Header() {
       {/* Mobile nav */}
       {mobileOpen && (
         <nav className="md:hidden bg-white border-t border-gray-100 px-5 py-3 space-y-0.5 shadow-lg">
-          {CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <Link
               key={cat.slug}
-              href={`/products/${cat.slug}`}
+              href={`/${cat.slug}`}
               onClick={() => setMobileOpen(false)}
               className="block px-3 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
             >
-              {cat.name}
+              {cat.icon} {cat.name}
             </Link>
           ))}
-          <div className="h-px bg-gray-100 my-1" />
-          <Link
-            href="/guides"
-            onClick={() => setMobileOpen(false)}
-            className="block px-3 py-2.5 text-sm font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-          >
-            가이드
-          </Link>
         </nav>
       )}
     </header>

@@ -21,10 +21,10 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">카테고리</h4>
             <ul className="space-y-2.5">
-              <li><Link href="/products/loan" className="text-sm text-gray-500 hover:text-white transition-colors">대출상품</Link></li>
-              <li><Link href="/products/asset" className="text-sm text-gray-500 hover:text-white transition-colors">자산형성</Link></li>
-              <li><Link href="/products/credit" className="text-sm text-gray-500 hover:text-white transition-colors">신용/채무</Link></li>
-              <li><Link href="/guides" className="text-sm text-gray-500 hover:text-white transition-colors">가이드</Link></li>
+              <li><Link href="/대출상품" className="text-sm text-gray-500 hover:text-white transition-colors">대출상품</Link></li>
+              <li><Link href="/자산형성" className="text-sm text-gray-500 hover:text-white transition-colors">자산형성</Link></li>
+              <li><Link href="/신용채무" className="text-sm text-gray-500 hover:text-white transition-colors">신용/채무</Link></li>
+              <li><Link href="/햇살론유스" className="text-sm text-gray-500 hover:text-white transition-colors">햇살론유스</Link></li>
             </ul>
           </div>
           <div>

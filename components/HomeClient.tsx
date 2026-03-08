@@ -2,23 +2,26 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import {
-  Search, ArrowRight, Banknote, PiggyBank, Handshake, Shield, CreditCard,
-  BookOpen, Phone, ChevronRight, Landmark
-} from "lucide-react"
-import { CATEGORIES, PRODUCTS, GUIDES, searchAll, type Product, type Guide } from "@/lib/data"
-
-const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  loan: <Banknote className="w-5 h-5" />,
-  asset: <PiggyBank className="w-5 h-5" />,
-  social: <Handshake className="w-5 h-5" />,
-  guarantee: <Shield className="w-5 h-5" />,
-  credit: <CreditCard className="w-5 h-5" />,
-}
+import { Search, ChevronRight, Phone, Landmark } from "lucide-react"
+import { categories } from "@/data/categories"
+import { hubArticles, spokeArticles } from "@/data/articles"
 
 export default function HomeClient() {
   const [query, setQuery] = useState("")
-  const results = query.trim() ? searchAll(query) : null
+
+  // 검색: spoke 타이틀에서 쿼리 매칭
+  const searchResults = query.trim()
+    ? Object.entries(spokeArticles).flatMap(([catSlug, spokes]) =>
+        Object.values(spokes)
+          .filter(
+            (s) =>
+              s.title.includes(query) ||
+              s.description?.includes(query) ||
+              catSlug.includes(query)
+          )
+          .map((s) => ({ catSlug, spoke: s }))
+      )
+    : null
 
   return (
     <>
@@ -36,7 +39,7 @@ export default function HomeClient() {
           </h1>
           <p className="text-blue-200/80 mb-10 text-base max-w-md mx-auto">
             햇살론, 미소금융, 새희망홀씨 등<br />
-            13개 금융상품을 한눈에 비교하세요
+            서민금융 상품을 한눈에 비교하세요
           </p>
           <div className="relative max-w-lg mx-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -44,20 +47,20 @@ export default function HomeClient() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="햇살론, 청년, 긴급생계자금..."
-              className="w-full pl-12 pr-4 py-4 bg-white text-gray-900 rounded-2xl text-sm shadow-xl shadow-blue-900/20 search-glow focus:outline-none placeholder:text-gray-400"
+              placeholder="햇살론유스, 신청조건, 금리..."
+              className="w-full pl-12 pr-4 py-4 bg-white text-gray-900 rounded-2xl text-sm shadow-xl shadow-blue-900/20 focus:outline-none placeholder:text-gray-400"
             />
           </div>
         </div>
       </section>
 
       {/* Search Results */}
-      {results && (
+      {searchResults && (
         <section className="max-w-5xl mx-auto px-5 py-10">
           <p className="text-sm text-gray-500 mb-4">
-            <span className="font-medium text-gray-900">&ldquo;{query}&rdquo;</span> 검색 결과 {results.products.length + results.guides.length}건
+            <span className="font-medium text-gray-900">&ldquo;{query}&rdquo;</span> 검색 결과 {searchResults.length}건
           </p>
-          {results.products.length === 0 && results.guides.length === 0 ? (
+          {searchResults.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Search className="w-5 h-5 text-gray-400" />
@@ -67,11 +70,19 @@ export default function HomeClient() {
             </div>
           ) : (
             <div className="space-y-3">
-              {results.products.map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-              {results.guides.map((g) => (
-                <GuideCard key={g.id} guide={g} />
+              {searchResults.map(({ catSlug, spoke }) => (
+                <Link
+                  key={`${catSlug}-${spoke.slug}`}
+                  href={`/${catSlug}/${spoke.slug}`}
+                  className="group bg-white rounded-2xl p-5 shadow-sm border border-gray-100 card-hover flex items-center gap-4"
+                >
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[11px] font-medium text-blue-600 mb-0.5">{catSlug}</p>
+                    <h3 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">{spoke.title}</h3>
+                    <p className="text-[13px] text-gray-500 mt-0.5 line-clamp-1">{spoke.description}</p>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-blue-500 shrink-0" />
+                </Link>
               ))}
             </div>
           )}
@@ -79,63 +90,98 @@ export default function HomeClient() {
       )}
 
       {/* Main Content */}
-      {!results && (
+      {!searchResults && (
         <>
           {/* Category Grid */}
           <section className="max-w-5xl mx-auto px-5 -mt-8 relative z-10">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-              {CATEGORIES.map((cat) => {
-                const count = PRODUCTS.filter((p) => p.category === cat.slug).length
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              {categories.map((cat) => {
+                const hub = hubArticles[cat.slug]
                 return (
                   <Link
                     key={cat.slug}
-                    href={`/products/${cat.slug}`}
+                    href={`/${cat.slug}`}
                     className="group bg-white rounded-2xl p-4 shadow-sm shadow-gray-200/50 border border-gray-100 card-hover"
                   >
-                    <div className={`w-10 h-10 ${cat.iconBg} rounded-xl flex items-center justify-center ${cat.color} mb-3 group-hover:scale-105 transition-transform`}>
-                      {CATEGORY_ICONS[cat.slug]}
-                    </div>
+                    <div className="text-2xl mb-2">{cat.icon}</div>
                     <p className="font-semibold text-sm text-gray-900">{cat.name}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{count}개 상품</p>
+                    <p className="text-xs text-gray-400 mt-0.5">{cat.count}개 가이드</p>
                   </Link>
                 )
               })}
             </div>
           </section>
 
-          {/* Featured Products */}
-          <section className="max-w-5xl mx-auto px-5 mt-14">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-lg font-bold text-gray-900">주요 금융상품</h2>
-                <p className="text-xs text-gray-400 mt-0.5">서민금융진흥원 등 공공기관 제공 상품</p>
+          {/* 주요 가이드 — 햇살론유스 spokes */}
+          {spokeArticles["햇살론유스"] && (
+            <section className="max-w-5xl mx-auto px-5 mt-14">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-lg font-bold text-gray-900">햇살론유스 가이드</h2>
+                  <p className="text-xs text-gray-400 mt-0.5">청년 서민금융 대출 완벽 안내</p>
+                </div>
+                <Link href="/햇살론유스" className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-0.5">
+                  전체보기 <ChevronRight className="w-3 h-3" />
+                </Link>
               </div>
-              <Link href="/products/loan" className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-0.5">
-                전체보기 <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-              {PRODUCTS.slice(0, 6).map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </section>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {Object.values(spokeArticles["햇살론유스"]).slice(0, 6).map((spoke) => (
+                  <Link
+                    key={spoke.slug}
+                    href={`/햇살론유스/${spoke.slug}`}
+                    className="group bg-white rounded-2xl p-5 shadow-sm shadow-gray-200/50 border border-gray-100 card-hover"
+                  >
+                    <p className="text-[11px] font-medium text-blue-600 mb-1">햇살론유스</p>
+                    <h3 className="font-bold text-sm text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug mb-2">
+                      {spoke.title}
+                    </h3>
+                    <p className="text-[13px] text-gray-500 line-clamp-2 leading-relaxed">{spoke.description}</p>
+                    <div className="flex justify-end mt-3">
+                      <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-blue-500 transition-colors" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
-          {/* Guides */}
+          {/* 전체 카테고리 허브 */}
           <section className="max-w-5xl mx-auto px-5 mt-14">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-lg font-bold text-gray-900">서민금융 가이드</h2>
-                <p className="text-xs text-gray-400 mt-0.5">상품 선택부터 신청까지 단계별 안내</p>
-              </div>
-              <Link href="/guides" className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-0.5">
-                전체보기 <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {GUIDES.slice(0, 4).map((guide) => (
-                <GuideCard key={guide.id} guide={guide} />
-              ))}
+            <h2 className="text-lg font-bold text-gray-900 mb-6">전체 카테고리</h2>
+            <div className="space-y-4">
+              {categories.map((cat) => {
+                const hub = hubArticles[cat.slug]
+                if (!hub) return null
+                return (
+                  <div key={cat.slug} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                    <Link
+                      href={`/${cat.slug}`}
+                      className="flex items-center gap-4 p-5 hover:bg-blue-50 transition-colors"
+                    >
+                      <span className="text-2xl">{cat.icon}</span>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-gray-900">{cat.name}</h3>
+                        <p className="text-xs text-gray-500 mt-0.5">{hub.description}</p>
+                      </div>
+                      <span className="text-xs text-gray-400">{cat.count}개</span>
+                      <ChevronRight className="w-4 h-4 text-gray-300" />
+                    </Link>
+                    {hub.spokes.length > 0 && (
+                      <div className="border-t border-gray-100 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 divide-x divide-y divide-gray-100">
+                        {hub.spokes.slice(0, 4).map((spoke) => (
+                          <Link
+                            key={spoke.slug}
+                            href={`/${cat.slug}/${spoke.slug}`}
+                            className="p-3 text-[13px] text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors line-clamp-1"
+                          >
+                            {spoke.title.split("|")[0].trim()}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
             </div>
           </section>
 
@@ -163,60 +209,5 @@ export default function HomeClient() {
         </>
       )}
     </>
-  )
-}
-
-function ProductCard({ product }: { product: Product }) {
-  const cat = CATEGORIES.find((c) => c.slug === product.category)
-  return (
-    <Link
-      href={`/products/${product.category}/${product.id}`}
-      className="group bg-white rounded-2xl p-5 shadow-sm shadow-gray-200/50 border border-gray-100 card-hover block"
-    >
-      <div className="flex items-center gap-2 mb-3">
-        <span className={`text-[11px] font-medium px-2 py-0.5 rounded-md ${cat?.bgColor} ${cat?.color}`}>
-          {cat?.name}
-        </span>
-        <span className="text-[11px] text-gray-400">{product.institution}</span>
-      </div>
-      <h3 className="font-bold text-gray-900 mb-1">{product.name}</h3>
-      <p className="text-[13px] text-gray-500 line-clamp-2 leading-relaxed mb-4">{product.description}</p>
-      <div className="flex items-end justify-between pt-3 border-t border-gray-100">
-        <div>
-          <p className="text-[11px] text-gray-400 mb-0.5">금리</p>
-          <p className="text-sm font-bold text-blue-600">{product.rate}</p>
-        </div>
-        <div className="text-right">
-          <p className="text-[11px] text-gray-400 mb-0.5">한도</p>
-          <p className="text-sm font-semibold text-gray-700">{product.limit.split("(")[0].split("/")[0].trim()}</p>
-        </div>
-        <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-blue-500 transition-colors" />
-      </div>
-    </Link>
-  )
-}
-
-function GuideCard({ guide }: { guide: Guide }) {
-  const cat = CATEGORIES.find((c) => c.slug === guide.category)
-  return (
-    <Link
-      href={`/guides/${guide.id}`}
-      className="group bg-white rounded-2xl p-5 shadow-sm shadow-gray-200/50 border border-gray-100 card-hover flex gap-4 items-start"
-    >
-      <div className={`w-10 h-10 ${cat?.bgColor || "bg-gray-50"} rounded-xl flex items-center justify-center shrink-0`}>
-        <BookOpen className={`w-5 h-5 ${cat?.color || "text-gray-500"}`} />
-      </div>
-      <div className="min-w-0 flex-1">
-        <h3 className="font-bold text-sm text-gray-900 group-hover:text-blue-600 transition-colors">{guide.title}</h3>
-        <p className="text-[13px] text-gray-500 mt-1.5 line-clamp-2 leading-relaxed">{guide.summary}</p>
-        <div className="flex gap-1.5 mt-3">
-          {guide.tags.slice(0, 3).map((tag) => (
-            <span key={tag} className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-    </Link>
   )
 }
