@@ -3,6 +3,14 @@
 @theme inline {
   --color-background: #f8fafc;
   --color-foreground: #0f172a;
+  --color-fin-50: #eff6ff;
+  --color-fin-100: #dbeafe;
+  --color-fin-200: #bfdbfe;
+  --color-fin-500: #3b82f6;
+  --color-fin-600: #2563eb;
+  --color-fin-700: #1d4ed8;
+  --color-fin-800: #1e40af;
+  --color-fin-900: #1e3a8a;
   --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Mono", monospace;
 }
@@ -49,6 +57,19 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Article prose */
+.prose-custom p {
+  margin-bottom: 0.75rem;
+  line-height: 1.75;
+}
+.prose-custom strong {
+  font-weight: 600;
+  color: #1e293b;
+}
+.prose-custom p:last-child {
+  margin-bottom: 0;
 }
 
 /* Section divider */
