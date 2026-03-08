@@ -40,5 +40,12 @@
     "file": "긴급생계자금.json",
     "fetchedAt": "2026-03-07",
     "url": "https://www.kinfa.or.kr"
+  },
+  "대출상품": {
+    "name": "대출상품",
+    "source": "서민금융진흥원 / 금융위원회",
+    "file": "대출상품.json",
+    "fetchedAt": "2026-03-07",
+    "url": "https://www.kinfa.or.kr"
   }
 }
