@@ -55,8 +55,9 @@ function quickCheck(filePath) {
 
   const allText = textContent.join("\n");
 
+  const hasSpokes = content.includes("sections:");
   const styleResult = verifyStyle(allText, filePath);
-  const selfCheckResult = verifySelfCheck(allText, filePath);
+  const selfCheckResult = verifySelfCheck(allText, filePath, hasSpokes);
   const facts = extractNumbers(allText);
 
   const issues = [...styleResult.issues, ...selfCheckResult.issues];

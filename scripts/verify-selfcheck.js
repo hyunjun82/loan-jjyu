@@ -72,12 +72,12 @@ function checkSectionConsistency(text) {
   return issues;
 }
 
-function checkStructure(text) {
+function checkStructure(text, hasSpokes) {
   const issues = [];
   const { structure } = CONFIG;
 
-  // 섹션 키워드 포함 확인
-  if (structure.requiredSectionKeywords) {
+  // spoke 글이 있는 파일(sections: 포함)에만 필수 섹션 키워드 검사
+  if (hasSpokes && structure.requiredSectionKeywords) {
     for (const keyword of structure.requiredSectionKeywords) {
       if (!text.includes(keyword)) {
         issues.push({
@@ -91,11 +91,11 @@ function checkStructure(text) {
   return issues;
 }
 
-function verify(text, label) {
+function verify(text, label, hasSpokes) {
   const issues = [
     ...checkNegationConflicts(text),
     ...checkSectionConsistency(text),
-    ...checkStructure(text),
+    ...checkStructure(text, hasSpokes),
   ];
 
   return {
@@ -124,7 +124,8 @@ function verifyAll() {
     if (!textContent) continue;
 
     const allText = textContent.join("\n");
-    const result = verify(allText, file);
+    const hasSpokes = content.includes("sections:");
+    const result = verify(allText, file, hasSpokes);
     results.files.push(result);
     results.totalIssues += result.issues.length;
     if (!result.pass) results.pass = false;
