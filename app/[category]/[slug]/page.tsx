@@ -157,7 +157,7 @@ export default async function SpokePage({ params }: PageProps) {
           )}
 
           {/* Viz: top */}
-          <ArticleViz slug={spokeSlug} position="top" />
+          <ArticleViz slug={catSlug} position="top" />
 
           {/* Article Sections */}
           <article>
@@ -174,7 +174,7 @@ export default async function SpokePage({ params }: PageProps) {
                     </div>
                     <div className="text-[15px] text-gray-600 leading-[1.85] sm:text-[16px] pl-[42px] space-y-3">
                       {section.content.includes("<p>") ? (
-                        <div dangerouslySetInnerHTML={{ __html: section.content }} />
+                        <div className="prose-custom" dangerouslySetInnerHTML={{ __html: section.content }} />
                       ) : (
                         section.content.split("\n\n").map((paragraph, pi) => (
                           <p key={pi}>{paragraph}</p>
@@ -189,7 +189,7 @@ export default async function SpokePage({ params }: PageProps) {
                       <hr className="mt-2 border-gray-200" />
                     </>
                   )}
-                  <ArticleViz slug={spokeSlug} position={`after-${i}` as `after-${number}`} />
+                  <ArticleViz slug={catSlug} position={`after-${i}` as `after-${number}`} />
                 </Fragment>
               );
             })}
