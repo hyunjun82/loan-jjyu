@@ -38,7 +38,7 @@ export const categories: Category[] = [
   },
   {
     name: "햇살론유스",
-    slug: "haesallon-youth",
+    slug: "햇살론유스",
     icon: "🌞",
     description: "만 19~34세 청년을 위한 서민금융 대출",
     count: 14,

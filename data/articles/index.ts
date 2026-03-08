@@ -15,7 +15,7 @@ export const hubArticles: Record<string, LoanHubArticle> = {
   사회적금융: 사회적금융Hub,
   보증보험: 보증보험Hub,
   신용채무: 신용채무Hub,
-  "haesallon-youth": haesallonYouthHub,
+  "햇살론유스": haesallonYouthHub,
 };
 
 export const spokeArticles: Record<string, Record<string, LoanSpokeArticle>> = {
@@ -24,7 +24,7 @@ export const spokeArticles: Record<string, Record<string, LoanSpokeArticle>> = {
   사회적금융: 사회적금융Spokes,
   보증보험: 보증보험Spokes,
   신용채무: 신용채무Spokes,
-  "haesallon-youth": haesallonYouthSpokes,
+  "햇살론유스": haesallonYouthSpokes,
 };
 
 export function getHubArticle(categorySlug: string): LoanHubArticle | undefined {

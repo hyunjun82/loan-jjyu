@@ -2,27 +2,27 @@ import type { LoanHubArticle, LoanSpokeArticle } from "@/lib/types";
 
 // ─── 햇살론유스 Hub ───────────────────────────────────────────────
 export const hub: LoanHubArticle = {
-  categorySlug: "haesallon-youth",
+  categorySlug: "햇살론유스",
   title: "햇살론유스 — 청년 서민금융 대출 안내",
   h1: "햇살론유스 — 청년 서민금융 대출 안내",
   metaDescription: "대학생·취업준비생·사회초년생을 위한 서민금융 대출 햇살론유스. 신청 조건, 금리, 한도, 신청 방법까지 공식 데이터 기준으로 정리했어요.",
   description: "만 19~34세 청년 대상 저금리 서민 대출",
   heroDescription: "햇살론유스는 서민금융진흥원이 운영하는 청년 전용 서민 대출이에요. 대학생·취업준비생·사회초년생이 최대 1200만원을 연 3.5% 고정 금리로 이용할 수 있어요.",
   spokes: [
-    { slug: "haesallon-youth-신청조건", title: "햇살론유스 청년 신청 조건 | 대학생 취업준비생 소득 기준", description: "나이·소득·유형별 신청 자격 총정리" },
-    { slug: "haesallon-youth-금리조건", title: "햇살론유스 유형별 적용 금리 조건 | 사회초년생 취업준비생 차이", description: "고정 금리 3.5% 적용 기준과 우대 조건" },
-    { slug: "haesallon-youth-대출한도", title: "햇살론유스 최대 대출 한도 확인 | 일반생활자금 특정용도 차이", description: "최대 1200만원 한도 활용 방법" },
-    { slug: "haesallon-youth-나이제한", title: "햇살론유스 나이 제한 초과 시 | 서민금융 대체 대출 비교", description: "35세 이상 이용 가능한 대체 상품" },
-    { slug: "haesallon-youth-신청방법", title: "햇살론유스 앱 신청 방법 | 보증번호 발급 서류 준비 순서", description: "서민금융 잇다 앱에서 신청하는 전 과정" },
-    { slug: "haesallon-youth-부결재신청", title: "햇살론유스 부결 사유 유형 | 재신청 가능 시점 방법", description: "거절 이유와 재신청 조건 확인" },
-    { slug: "haesallon-youth-대환대출", title: "햇살론유스 대환 대출 신청 방법 | 고금리 학자금 전환 조건", description: "고금리 기존 대출을 햇살론유스로 갈아타는 방법" },
-    { slug: "haesallon-youth-필요서류", title: "햇살론유스 필요서류 목록 | 소득 재직 증빙 발급 방법", description: "신청 시 필요한 서류와 발급 방법" },
-    { slug: "haesallon-youth-대학생", title: "햇살론유스 대학생 신청 가능 조건 | 등록금 생활비 지원 용도", description: "대학생 신청 자격과 용도 범위" },
-    { slug: "haesallon-youth-취업준비생", title: "햇살론유스 취업준비생 신청 가능 조건 | 미취업 소득증빙 방법", description: "취업준비생 소득 없어도 신청하는 방법" },
-    { slug: "haesallon-youth-사회초년생", title: "햇살론유스 사회초년생 신청 가능 조건 | 중소기업 재직 소득 기준", description: "사회초년생 재직 기간과 소득 조건" },
-    { slug: "haesallon-youth-소득기준", title: "햇살론유스 연소득 기준 초과 시 | 소득 증빙 확인 방법", description: "소득 기준 확인과 증빙 방법" },
-    { slug: "haesallon-youth-취급기관", title: "햇살론유스 취급 협약 은행 목록 | 서민금융진흥원 앱 신청 방법", description: "신청 가능한 협약 은행과 신청 경로" },
-    { slug: "haesallon-youth-상환방식", title: "햇살론유스 상환방식 월 상환액 | 원리금균등분할상환 계산", description: "원금균등분할상환 방식과 월 납부 계획" },
+    { slug: "신청조건", title: "햇살론유스 청년 신청 조건 | 대학생 취업준비생 소득 기준", description: "나이·소득·유형별 신청 자격 총정리" },
+    { slug: "금리조건", title: "햇살론유스 유형별 적용 금리 조건 | 사회초년생 취업준비생 차이", description: "고정 금리 3.5% 적용 기준과 우대 조건" },
+    { slug: "대출한도", title: "햇살론유스 최대 대출 한도 확인 | 일반생활자금 특정용도 차이", description: "최대 1200만원 한도 활용 방법" },
+    { slug: "나이제한", title: "햇살론유스 나이 제한 초과 시 | 서민금융 대체 대출 비교", description: "35세 이상 이용 가능한 대체 상품" },
+    { slug: "신청방법", title: "햇살론유스 앱 신청 방법 | 보증번호 발급 서류 준비 순서", description: "서민금융 잇다 앱에서 신청하는 전 과정" },
+    { slug: "부결재신청", title: "햇살론유스 부결 사유 유형 | 재신청 가능 시점 방법", description: "거절 이유와 재신청 조건 확인" },
+    { slug: "대환대출", title: "햇살론유스 대환 대출 신청 방법 | 고금리 학자금 전환 조건", description: "고금리 기존 대출을 햇살론유스로 갈아타는 방법" },
+    { slug: "필요서류", title: "햇살론유스 필요서류 목록 | 소득 재직 증빙 발급 방법", description: "신청 시 필요한 서류와 발급 방법" },
+    { slug: "대학생", title: "햇살론유스 대학생 신청 가능 조건 | 등록금 생활비 지원 용도", description: "대학생 신청 자격과 용도 범위" },
+    { slug: "취업준비생", title: "햇살론유스 취업준비생 신청 가능 조건 | 미취업 소득증빙 방법", description: "취업준비생 소득 없어도 신청하는 방법" },
+    { slug: "사회초년생", title: "햇살론유스 사회초년생 신청 가능 조건 | 중소기업 재직 소득 기준", description: "사회초년생 재직 기간과 소득 조건" },
+    { slug: "소득기준", title: "햇살론유스 연소득 기준 초과 시 | 소득 증빙 확인 방법", description: "소득 기준 확인과 증빙 방법" },
+    { slug: "취급기관", title: "햇살론유스 취급 협약 은행 목록 | 서민금융진흥원 앱 신청 방법", description: "신청 가능한 협약 은행과 신청 경로" },
+    { slug: "상환방식", title: "햇살론유스 상환방식 월 상환액 | 원리금균등분할상환 계산", description: "원금균등분할상환 방식과 월 납부 계획" },
   ],
   datePublished: "2026-03-08",
   dateModified: "2026-03-08",
@@ -33,8 +33,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 1. 신청조건 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-신청조건",
-    categorySlug: "haesallon-youth",
+    slug: "신청조건",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 청년 신청 조건 | 대학생 취업준비생 소득 기준",
     h1: "햇살론유스 청년 신청 조건 | 대학생 취업준비생 소득 기준",
     metaDescription: "햇살론유스 신청 자격은 만 19세 이상 만 34세 이하, 연소득 3,500만원 이하예요. 대학생·취업준비생·사회초년생 유형별 조건과 신청 절차를 정리했어요.",
@@ -78,8 +78,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 2. 금리조건 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-금리조건",
-    categorySlug: "haesallon-youth",
+    slug: "금리조건",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 유형별 적용 금리 조건 | 사회초년생 취업준비생 차이",
     h1: "햇살론유스 유형별 적용 금리 조건 | 사회초년생 취업준비생 차이",
     metaDescription: "햇살론유스 기본 금리는 연 3.5% 고정이에요. 신청 유형과 사회적배려 대상 여부에 따라 우대 금리가 달라질 수 있어요. 실제 부담 금리 계산 방법도 정리했어요.",
@@ -123,8 +123,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 3. 대출한도 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-대출한도",
-    categorySlug: "haesallon-youth",
+    slug: "대출한도",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 최대 대출 한도 확인 | 일반생활자금 특정용도 차이",
     h1: "햇살론유스 최대 대출 한도 확인 | 일반생활자금 특정용도 차이",
     metaDescription: "햇살론유스 최대 대출 한도는 1200만원이에요. 용도에 따라 신청 가능 금액이 달라질 수 있고, 한 번 쓴 한도는 복구되지 않아요. 한도 활용 방법을 정리했어요.",
@@ -168,8 +168,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 4. 나이제한 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-나이제한",
-    categorySlug: "haesallon-youth",
+    slug: "나이제한",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 나이 제한 초과 시 | 서민금융 대체 대출 비교",
     h1: "햇살론유스 나이 제한 초과 시 | 서민금융 대체 대출 비교",
     metaDescription: "햇살론유스는 만 34세까지만 신청할 수 있어요. 나이 조건을 넘긴 경우 이용 가능한 햇살론15, 새희망홀씨 등 대체 서민금융 상품을 비교했어요.",
@@ -213,8 +213,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 5. 신청방법 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-신청방법",
-    categorySlug: "haesallon-youth",
+    slug: "신청방법",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 앱 신청 방법 | 보증번호 발급 서류 준비 순서",
     h1: "햇살론유스 앱 신청 방법 | 보증번호 발급 서류 준비 순서",
     metaDescription: "햇살론유스는 서민금융 잇다 앱에서 신청해요. 보증번호 발급 후 협약 은행에서 대출을 실행하는 전 과정을 단계별로 정리했어요.",
@@ -258,8 +258,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 6. 부결재신청 ────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-부결재신청",
-    categorySlug: "haesallon-youth",
+    slug: "부결재신청",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 부결 사유 유형 | 재신청 가능 시점 방법",
     h1: "햇살론유스 부결 사유 유형 | 재신청 가능 시점 방법",
     metaDescription: "햇살론유스가 부결됐다면 사유를 먼저 확인해야 해요. 부결 이유 유형과 재신청 가능 시점, 거절 후 대체 상품을 정리했어요.",
@@ -303,8 +303,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 7. 대환대출 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-대환대출",
-    categorySlug: "haesallon-youth",
+    slug: "대환대출",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 대환 대출 신청 방법 | 고금리 학자금 전환 조건",
     h1: "햇살론유스 대환 대출 신청 방법 | 고금리 학자금 전환 조건",
     metaDescription: "햇살론유스로 고금리 기존 대출을 갈아탈 수 있어요. 대환 가능한 대출 종류, 전환 조건, 필요 서류를 공식 소스 기준으로 정리했어요.",
@@ -348,8 +348,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 8. 필요서류 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-필요서류",
-    categorySlug: "haesallon-youth",
+    slug: "필요서류",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 필요서류 목록 | 소득 재직 증빙 발급 방법",
     h1: "햇살론유스 필요서류 목록 | 소득 재직 증빙 발급 방법",
     metaDescription: "햇살론유스 신청에 필요한 서류는 신청 유형마다 달라요. 대학생·취업준비생·사회초년생별 증빙 서류와 발급 방법을 정리했어요.",
@@ -393,8 +393,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 9. 대학생 ────────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-대학생",
-    categorySlug: "haesallon-youth",
+    slug: "대학생",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 대학생 신청 가능 조건 | 등록금 생활비 지원 용도",
     h1: "햇살론유스 대학생 신청 가능 조건 | 등록금 생활비 지원 용도",
     metaDescription: "대학생도 햇살론유스를 신청할 수 있어요. 소득이 없어도 되고, 대학원생·학점은행제 학생도 가능해요. 용도와 거치기간까지 정리했어요.",
@@ -438,8 +438,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 10. 취업준비생 ───────────────────────────────────────────────
   {
-    slug: "haesallon-youth-취업준비생",
-    categorySlug: "haesallon-youth",
+    slug: "취업준비생",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 취업준비생 신청 가능 조건 | 미취업 소득증빙 방법",
     h1: "햇살론유스 취업준비생 신청 가능 조건 | 미취업 소득증빙 방법",
     metaDescription: "취업준비생도 햇살론유스를 신청할 수 있어요. 소득이 없어도 되고, 미취업 상태 증빙 방법부터 거치기간 활용까지 정리했어요.",
@@ -483,8 +483,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 11. 사회초년생 ───────────────────────────────────────────────
   {
-    slug: "haesallon-youth-사회초년생",
-    categorySlug: "haesallon-youth",
+    slug: "사회초년생",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 사회초년생 신청 가능 조건 | 중소기업 재직 소득 기준",
     h1: "햇살론유스 사회초년생 신청 가능 조건 | 중소기업 재직 소득 기준",
     metaDescription: "사회초년생은 중소기업에 1년 이하 재직 중이어야 해요. 재직 기간 계산 방법, 소득 기준, 이직 중인 경우 신청 가능 여부를 정리했어요.",
@@ -528,8 +528,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 12. 소득기준 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-소득기준",
-    categorySlug: "haesallon-youth",
+    slug: "소득기준",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 연소득 기준 초과 시 | 소득 증빙 확인 방법",
     h1: "햇살론유스 연소득 기준 초과 시 | 소득 증빙 확인 방법",
     metaDescription: "햇살론유스 소득 기준은 연 3,500만원 이하예요. 소득이 없거나 소득 증빙이 어려운 경우 건강보험료로 확인하는 방법과 기준 초과 시 대체 상품을 정리했어요.",
@@ -573,8 +573,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 13. 취급기관 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-취급기관",
-    categorySlug: "haesallon-youth",
+    slug: "취급기관",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 취급 협약 은행 목록 | 서민금융진흥원 앱 신청 방법",
     h1: "햇살론유스 취급 협약 은행 목록 | 서민금융진흥원 앱 신청 방법",
     metaDescription: "햇살론유스는 전북은행, 기업은행, 신한은행에서 대출을 실행해요. 서민금융 잇다 앱에서 보증 신청 후 협약 은행을 선택하는 방법을 정리했어요.",
@@ -618,8 +618,8 @@ export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
   // ── 14. 상환방식 ─────────────────────────────────────────────────
   {
-    slug: "haesallon-youth-상환방식",
-    categorySlug: "haesallon-youth",
+    slug: "상환방식",
+    categorySlug: "햇살론유스",
     title: "햇살론유스 상환방식 월 상환액 | 원리금균등분할상환 계산",
     h1: "햇살론유스 상환방식 월 상환액 | 원리금균등분할상환 계산",
     metaDescription: "햇살론유스는 원금균등분할상환 방식이에요. 대출 금액과 기간에 따른 월 납부액 계산 방법, 거치기간 선택 효과, 중도상환 조건을 정리했어요.",
