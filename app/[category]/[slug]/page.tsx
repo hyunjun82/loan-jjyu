@@ -9,6 +9,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { ProductInfoCard } from "@/components/ProductInfoCard";
 import { LoanConditionTable } from "@/components/LoanConditionTable";
 import { ArticleViz } from "@/components/ArticleViz";
+import { RelatedSpokes } from "@/components/RelatedSpokes";
 import { getSpokeArticle } from "@/data/articles";
 import { spokeArticles } from "@/data/articles";
 import { categories } from "@/data/categories";
@@ -170,7 +171,7 @@ export default async function SpokePage({ params }: PageProps) {
                       <h2 className="text-lg font-bold text-gray-900">{section.title}</h2>
                     </div>
                     {/* Viz: 첫 번째 섹션 소제목 아래에만 표시 */}
-                    {i === 0 && <ArticleViz slug={catSlug} position="top" />}
+                    {i === 0 && <ArticleViz slug={catSlug} spokeSlug={spokeSlug} position="top" />}
                     <div className="text-[15px] text-gray-600 leading-[1.85] sm:text-[16px] pl-[42px] space-y-3">
                       {section.content.includes("<p>") ? (
                         <div className="prose-custom" dangerouslySetInnerHTML={{ __html: section.content }} />
@@ -188,7 +189,10 @@ export default async function SpokePage({ params }: PageProps) {
                       <hr className="mt-2 border-gray-200" />
                     </>
                   )}
-                  <ArticleViz slug={catSlug} position={`after-${i}` as `after-${number}`} />
+                  <ArticleViz slug={catSlug} spokeSlug={spokeSlug} position={`after-${i}` as `after-${number}`} />
+
+                  {/* 관련 대출 정보: 2번째 섹션(i=1) 이후 본문 중간 배치 */}
+                  {i === 1 && <RelatedSpokes categorySlug={catSlug} currentSlug={spokeSlug} />}
                 </Fragment>
               );
             })}
