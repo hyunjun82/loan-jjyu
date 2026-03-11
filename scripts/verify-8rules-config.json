@@ -1,0 +1,123 @@
+{
+  "$comment": "8대 원칙 통합 검증 설정 (loan-jjyu). verify-8rules.js가 이 설정을 참조한다.",
+  "minScorePerRule": 7,
+  "minAverageScore": 8,
+
+  "rule1_storytelling": {
+    "conclusionEndings": ["에요", "예요", "돼요", "이에요", "거예요", "세요", "네요", "죠"],
+    "fillerStarts": ["알아보겠", "살펴보겠", "설명하겠", "알아볼게", "여기서는", "이번에는"],
+    "conditionalWords": ["다만", "하지만", "만약", "경우", "때", "반면", "단", "예외", "조건", "그런데", "한편"],
+    "actionWords": ["신청", "방문", "전화", "제출", "확인", "홈페이지", "접수", "발급", "출력", "문의", "상담", "연락", "잇다", "1397", "보증신청", "대출신청", "한도조회"],
+    "forbiddenHtml": ["<ul>", "<li>", "<ol>"],
+    "requiredParagraphCount": 3
+  },
+
+  "rule2_structure": {
+    "empathyPatterns": ["?", "막막", "궁금", "고민", "걱정", "어렵", "힘들", "모르", "불안", "당황", "헷갈", "복잡", "어떻게", "어디서"],
+    "counterpointWords": ["다만", "하지만", "반면", "주의", "예외", "주목", "그런데", "그렇지만", "한편", "오해"],
+    "actionInstitutions": [
+      "서민금융진흥원", "서민금융통합지원센터", "신용보증재단", "금융위원회", "금융감독원",
+      "은행", "저축은행", "새마을금고", "신협", "상호금융",
+      "기업은행", "농협", "우리은행", "하나은행", "국민은행",
+      "잇다", "1397"
+    ]
+  },
+
+  "rule3_style": {
+    "forbiddenEndings": ["합니다", "입니다", "됩니다", "었습니다", "있습니다", "없습니다", "됐습니다", "봅니다", "줍니다"],
+    "forbiddenWords": [
+      "또한", "결론적으로", "다양한", "매우 중요",
+      "알아보겠습니다", "살펴보겠습니다", "알아볼게요",
+      "특히 주목할 만한", "폭넓게 사용"
+    ],
+    "fillerPatterns": [
+      "에 대해 알아보",
+      "자세히 살펴보",
+      "함께 알아보",
+      "지금부터 알아",
+      "하나씩 살펴",
+      "꼼꼼히 따져"
+    ],
+    "maxConsecutiveSameEnding": 2,
+    "maxConsecutiveSameStart": 2,
+    "minSentenceLengthStdev": 8
+  },
+
+  "rule4_sharpLogic": {
+    "questionPatterns": ["?", "가요", "나요", "인가요", "할까요", "되나요", "무엇인가요", "일까요", "어떤", "얼마"],
+    "badStarts": ["알아보겠", "살펴보겠", "설명하겠", "알아볼게", "여기서", "이번에는", "먼저", "우선", "이에 대해", "이 제도는", "이것은"],
+    "minFinanceRefDensity": 0.5,
+    "connectors": [
+      "다만", "하지만", "반면", "한편", "그런데", "그렇지만", "그러나",
+      "참고로", "덧붙이면", "한 가지 더", "이 점도", "같이 알아",
+      "여기서 하나 더",
+      "주의할 점은", "흔히 오해",
+      "따라서", "그래서", "이에 따라", "그러므로",
+      "이어서", "다음으로", "살펴보면",
+      "단,", "예외적으로"
+    ],
+    "connectorMaxRepeat": 2,
+    "maxUnsupportedNumbers": 6
+  },
+
+  "rule5_readability": {
+    "avgSentenceLengthMin": 20,
+    "avgSentenceLengthMax": 65,
+    "maxLongSentences": 3,
+    "longSentenceThreshold": 80,
+    "faqSentenceCountMin": 2,
+    "faqSentenceCountMax": 5,
+    "maxCommasPerSentence": 3,
+    "technicalSuffixes": [
+      "보증료", "상환액", "한도액", "이자율", "연소득", "신용점수",
+      "보증신청", "대출금리", "상환기간", "거치기간", "원리금",
+      "보증기관", "취급기관", "대출한도", "신청자격", "소득기준"
+    ]
+  },
+
+  "rule6_resolution": {
+    "placePatterns": [
+      "서민금융진흥원", "서민금융통합지원센터", "신용보증재단",
+      "은행", "저축은행", "새마을금고", "신협", "상호금융",
+      "기업은행", "농협", "우리은행", "하나은행", "국민은행",
+      "금융위원회", "금융감독원"
+    ],
+    "documentPatterns": [
+      "소득확인서", "재직증명서", "건강보험료", "납부확인서", "신분증",
+      "가족관계증명서", "학생증", "재학증명서", "졸업증명서",
+      "고용보험", "급여명세서", "소득금액증명원", "서류"
+    ],
+    "contactPatterns": ["\\d{4}-\\d{4}", "1\\d{3}-\\d{4}", "\\d{2,3}-\\d{3,4}-\\d{4}", "온라인\\s*신청", "인터넷\\s*신청", "홈페이지", "잇다\\s*앱", "앱\\s*설치"],
+    "linkWhitelist": ["kinfa.or.kr", "fsc.go.kr", "gov.kr", "sbcr.or.kr", "nhis.or.kr", "nps.or.kr"],
+    "actionWords": ["신청", "방문", "전화", "제출", "확인", "홈페이지", "접수", "출력", "문의", "연락", "상담", "잇다", "1397"]
+  },
+
+  "rule7_accuracy": {
+    "descriptionLengthMin": 20,
+    "descriptionLengthMax": 200,
+    "maxMetaDescriptionLength": 170,
+    "vagueQuantifiers": ["약", "대략", "정도", "가량", "쯤", "대충", "얼추"],
+    "htmlTags": ["table", "thead", "tbody", "tr", "th", "td", "p", "a", "strong"],
+    "contradictionExcludeTerms": [
+      "기간", "이내", "기한", "비율", "기준", "이하", "이상", "미만", "초과", "까지",
+      "한도", "금리", "보증료", "소득", "연소득", "점수", "요율", "기준금리",
+      "상환기간", "거치기간", "대출기간", "납입금액", "이자율"
+    ]
+  },
+
+  "rule8_source": {
+    "maxFreshnessDays": 90,
+    "maxFinanceMismatch": 1,
+    "sourceAuthorityPatterns": [
+      "서민금융진흥원", "금융위원회", "공식", "바탕", "기준으로", "근거로", "kinfa", "fsc.go.kr"
+    ]
+  },
+
+  "humanChecklist": [
+    "hero를 소리 내어 읽었을 때 자연스러운가?",
+    "표가 이해를 돕는가 (형식만의 표가 아닌가)?",
+    "FAQ가 실제 독자가 물을 질문인가?",
+    "반론(다만...)이 진짜 가치 있는 내용인가?",
+    "이 글을 가족에게 보내면 실제로 대출 신청까지 완료할 수 있는가?"
+  ]
+}
