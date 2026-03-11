@@ -1,4 +1,31 @@
-import type { LoanSpokeArticle } from "@/lib/types";
+import type { LoanHubArticle, LoanSpokeArticle } from "@/lib/types";
+
+export const hub: LoanHubArticle = {
+  categorySlug: "햇살론유스",
+  title: "햇살론유스 — 청년 서민금융 대출 안내",
+  h1: "햇살론유스 — 청년 서민금융 대출 안내",
+  metaDescription: "만 19~34세 청년을 위한 정부지원 대출 햇살론유스. 대학생·취업준비생·사회초년생 신청 조건, 금리, 한도, 신청 방법까지 정리했어요.",
+  description: "청년 대상 서민금융 보증 대출",
+  heroDescription: "햇살론유스는 만 19~34세 저소득 청년을 위한 정부지원 대출이에요. 연소득 3,500만원 이하 대학생·취업준비생·사회초년생이 신청할 수 있어요.",
+  spokes: [
+    { slug: "신청조건", title: "햇살론유스 청년 신청 조건 | 대학생 취업준비생 소득 기준", description: "나이·소득·유형별 신청 자격 총정리" },
+    { slug: "금리조건", title: "햇살론유스 유형별 적용 금리 조건 | 사회초년생 취업준비생 차이", description: "유형별 금리 차이와 실제 이자 계산" },
+    { slug: "대출한도", title: "햇살론유스 최대 대출 한도 확인 | 일반생활자금 특정용도자금 차이", description: "한도 유형별 차이와 월 납부액 계산" },
+    { slug: "나이제한", title: "햇살론유스 나이 제한 초과 시 | 서민금융 대체 대출 비교", description: "나이 초과 시 대체 상품 안내" },
+    { slug: "신청방법", title: "햇살론유스 앱 신청 방법 | 보증번호 발급 서류 준비 순서", description: "앱 신청부터 대출 실행까지 전 과정" },
+    { slug: "부결재신청", title: "햇살론유스 자주 거절되는 이유 유형은?", description: "부결 원인 유형별 재신청 방법" },
+    { slug: "대환대출", title: "햇살론유스 대환 대출 신청 방법 | 고금리 학자금 전환 조건", description: "고금리 대출 갈아타기 조건과 방법" },
+    { slug: "필요서류", title: "햇살론유스 필요서류 목록 | 소득 재직 증빙 발급 방법", description: "유형별 필요서류 체크리스트" },
+    { slug: "대학생", title: "햇살론유스 대학생 신청 가능 조건 | 등록금 생활비 지원 용도", description: "대학생 신청 자격과 서류 안내" },
+    { slug: "취업준비생", title: "햇살론유스 취업준비생 신청 가능 조건 | 미취업 소득증빙 방법", description: "취업준비생 자격 확인과 소득증빙 방법" },
+    { slug: "사회초년생", title: "햇살론유스 사회초년생 신청 가능 조건 | 중소기업 재직 소득 기준", description: "사회초년생 재직 조건과 신청 방법" },
+    { slug: "소득기준", title: "햇살론유스 연소득 기준 초과 시 | 소득 증빙 확인 방법", description: "소득 기준 계산과 증빙 방법" },
+    { slug: "취급기관", title: "햇살론유스 취급 협약 은행 목록 | 서민금융진흥원 앱 신청 방법", description: "협약 은행 목록과 앱 신청 방법" },
+    { slug: "상환방식", title: "햇살론유스 상환방식 월 상환액 | 원리금균등분할상환 계산", description: "상환 방식과 월 납부액 계산 예시" },
+  ],
+  datePublished: "2026-03-08",
+  dateModified: "2026-03-11",
+};
 
 export const spokes: Omit<LoanSpokeArticle, "productInfo" | "conditions">[] = [
 
