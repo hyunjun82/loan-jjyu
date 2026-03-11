@@ -50,4 +50,32 @@ export const categories: Category[] = [
     description: "저신용·저소득 서민을 위한 서민금융 보증 대출",
     count: 3,
   },
+  {
+    name: "햇살론뱅크",
+    slug: "햇살론뱅크",
+    icon: "🏦",
+    description: "중저신용 서민을 위한 은행권 정부보증 대출",
+    count: 11,
+  },
+  {
+    name: "미소금융",
+    slug: "미소금융",
+    icon: "🌱",
+    description: "저소득·기초생활수급자를 위한 소액 창업·운영 대출",
+    count: 12,
+  },
+  {
+    name: "새희망홀씨",
+    slug: "새희망홀씨",
+    icon: "🌾",
+    description: "저소득 근로자를 위한 은행권 서민 대출",
+    count: 13,
+  },
+  {
+    name: "긴급생계자금",
+    slug: "긴급생계자금",
+    icon: "🆘",
+    description: "위기상황 서민을 위한 긴급 소액 대출",
+    count: 9,
+  },
 ];

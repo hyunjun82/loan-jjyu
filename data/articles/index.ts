@@ -11,6 +11,12 @@ import { spokes as haesallonBankSpokesArr } from "./haesallon-bank-spokes-1";
 import { spokes as misoSpokesArr } from "./miso-spokes-1";
 import { spokes as saehopeSpokesArr } from "./saehope-spokes-1";
 import { spokes as emergencySpokesArr } from "./emergency-spokes-1";
+import {
+  haesallonBankHub,
+  misoHub,
+  saehopeHub,
+  emergencyHub,
+} from "./service-hubs";
 
 const haesallonYouthSpokes: Record<string, LoanSpokeArticle> =
   Object.fromEntries(haesallonYouthSpokesArr.map((s) => [s.slug, s as LoanSpokeArticle]));
@@ -38,6 +44,10 @@ export const hubArticles: Record<string, LoanHubArticle> = {
   신용채무: 신용채무Hub,
   "햇살론유스": haesallonYouthHub,
   "햇살론15": haesallon15Hub,
+  "햇살론뱅크": haesallonBankHub,
+  "미소금융": misoHub,
+  "새희망홀씨": saehopeHub,
+  "긴급생계자금": emergencyHub,
 };
 
 export const spokeArticles: Record<string, Record<string, LoanSpokeArticle>> = {
